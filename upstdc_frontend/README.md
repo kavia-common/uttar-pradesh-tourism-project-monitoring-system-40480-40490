@@ -1,82 +1,49 @@
-# Lightweight React Template for KAVIA
+# UPSTDC Frontend (React)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+Responsive dashboard-style frontend with protected routes, CRUD pages, and token-aware API client.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- React Router v6 with protected routes
+- Dashboard layout (sidebar + top bar)
+- Auth pages (Login, Signup)
+- Projects CRUD (list, view, create, edit)
+- Token handling with Axios interceptors and refresh flow
+- Environment-based configuration (no hardcoded URLs)
 
-## Getting Started
+## Environment
 
-In the project directory, you can run:
+Create a `.env` file at the project root with:
 
-### `npm start`
-
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-### `npm test`
-
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+```
+REACT_APP_API_BASE_URL=https://YOUR_BACKEND_URL
+REACT_APP_APP_NAME=UPSTDC Project Monitoring
 ```
 
-### Components
+The app also supports a window.__CONFIG__ object for runtime overrides:
+```
+<script>
+  window.__CONFIG__ = { API_BASE_URL: "https://your-api" };
+</script>
+```
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+## Scripts
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+- `npm start` - start dev server
+- `npm test` - run tests
+- `npm run build` - production build
 
-## Learn More
+## Routing Overview
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `/login`, `/signup` - public
+- `/dashboard` - protected
+- `/projects` - list (protected)
+- `/projects/new` - create
+- `/projects/:id` - view
+- `/projects/:id/edit` - update
+- `/users` - placeholder
 
-### Code Splitting
+## Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- When Figma assets are provided in the future, styling/layout must adhere strictly to the Figma-to-Application Conversion Guidelines.
+- Do not hardcode secrets or endpoints; use environment variables.
